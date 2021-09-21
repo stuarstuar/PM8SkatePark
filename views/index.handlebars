@@ -1,0 +1,112 @@
+
+  <body>
+    <h1>Skate Park</h1>
+
+    <div class="py-4">
+      <h2>Lista de participantes</h2>
+
+      <hr />
+
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Foto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Años de experiencia</th>
+            <th scope="col">Especialidad</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        {{!-- <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td><div></div></td>
+            <td>Tony Hawk</td>
+            <td>12</td>
+            <td>Kickflip</td>
+            <td class="text-success font-weight-bold">Aprobado</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td><div></div></td>
+            <td>Evelien Bouilliart</td>
+            <td>10</td>
+            <td>Heelflip</td>
+            <td class="text-success font-weight-bold">Aprobado</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td><div></div></td>
+            <td>Danny Way</td>
+            <td>8</td>
+            <td>Ollie</td>
+            <td class="text-warning font-weight-bold">En revisión</td>
+          </tr>
+        </tbody> --}}
+
+           <tbody id="cuerpo">
+
+    {{#each usuarios}}
+    <tr>
+      <td>{{@index}}</td>
+      <td>{{this.foto}}</td>
+      <td>{{this.nombre}}</td>
+      <td>{{this.anos_experiencia}}</td>
+      <td>{{this.especialidad}}</td>
+      <td>{{#if this.estado}} <span style="color:green;">Aprobado</span> {{else}} <span style="color:yellow">En espera</span> {{/if}} </td>
+  
+
+    </tr>
+
+    {{/each}}
+  </tbody>
+  </table>
+
+      <a href="http://localhost:3000/login">Iniciar Sesión</a> 
+      <a href="http://localhost:3000/registro">Registrarme</a>
+    </div>
+  </body>
+
+
+
+<style>
+
+  body {
+    background: #ffdc43;
+    color: #4a4a4a;
+    text-shadow: 0px 0px 1px black;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 40px 100px;
+    
+  }
+  
+  h1{
+      font-style: italic;
+  }
+  td, th{
+      vertical-align: middle!important;
+  }
+  td div{
+      background-size: cover;
+      width: 60px;
+      height: 60px;
+  }
+  
+  tbody tr:nth-child(1) td div{
+          background-image: url("/tony.jpg");
+  }
+  
+  tbody tr:nth-child(2) td div{
+      background-image: url("/Evelien.jpg");
+  }
+  
+  tbody tr:nth-child(3) td div{
+      background-image: url("/Danny.jpg");
+  }
+  
+  input{
+      text-align: center;
+  }
+</style>

@@ -1,0 +1,127 @@
+
+  <body>
+    <h1>Skate Park</h1>
+
+    <div class="py-4">
+      <h2>Registro</h2>
+      <hr class="w-50" />
+
+      <form>
+        <div class="form-group row w-50 m-auto">
+          <div class="form-group col-12 col-sm-6">
+            <label>Email</label>
+            <input class="form-control m-auto" id="email" />
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Nombre</label>
+            <input class="form-control m-auto" id="nombre"/>
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Password</label>
+            <input class="form-control m-auto" id="password" />
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Repita la password</label>
+            <input class="form-control m-auto" id="password2"/>
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Años de experiencia</label>
+            <input class="form-control m-auto" id="anos_experiencia" />
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Especialidad</label>
+            <input class="form-control m-auto" id="especialidad"/>
+          </div>
+          <div class="form-group col-12 col-sm-12">
+            <label>Foto de perfil</label>
+            <input type="file" id="foto"/>
+          </div>
+        </div>
+        <button class="btn btn-info mb-3" id="boton">Registrarme</button>
+        <p><a href="/login"> Iniciar sesión</a></p>
+      </form>
+    </div>
+  </body>
+
+
+<script>
+
+  $('#boton').click(async () => {
+
+    const email = $("#email").val();
+    const nombre = $("#nombre").val();
+    const password = $("#password").val();
+    const password2 = $("#password2").val();
+    const anos_experiencia = $("#anos_experiencia").val();
+    const especialidad = $("#especialidad").val();
+    //const foto = $("#foto").files[0];
+    //const name_foto = foto.name
+
+
+    const payload = {
+      email, nombre, password, password2
+      , anos_experiencia, especialidad}
+      //,name_foto
+
+
+
+    try {
+      await axios.post('/usuarios', payload)
+      alert("Usuario Registrado")
+    }
+    catch ({ response }) {
+
+      const { data } = response;
+      const { error } = data
+      alert(error)
+    }
+  })
+
+</script>
+
+
+
+
+<style>
+
+  body {
+    background: #ffdc43;
+    color: #4a4a4a;
+    text-shadow: 0px 0px 1px black;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 40px 100px;
+    
+  }
+  
+  h1{
+      font-style: italic;
+  }
+  td, th{
+      vertical-align: middle!important;
+  }
+  td div{
+      background-size: cover;
+      width: 60px;
+      height: 60px;
+  }
+  
+  tbody tr:nth-child(1) td div{
+          background-image: url("/tony.jpg");
+  }
+  
+  tbody tr:nth-child(2) td div{
+      background-image: url("/Evelien.jpg");
+  }
+  
+  tbody tr:nth-child(3) td div{
+      background-image: url("/Danny.jpg");
+  }
+  
+  input{
+      text-align: center;
+  }
+</style>
+
+
+
