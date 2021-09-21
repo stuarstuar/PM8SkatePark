@@ -30,7 +30,6 @@
       <td>{{this.especialidad}}</td>
       <td><input type="checkbox" {{#if this.estado}} checked {{/if}} onclick="changeStatus({{this.id}}, this)">
       </td> 
-
     </tr>
     {{/each}}
   </tbody>
@@ -39,7 +38,9 @@
     </div>
   </body>
 
+
 <script>
+// Función que autoriza participante
 
   const changeStatus = async(id,e) => {
 

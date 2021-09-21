@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 
+// Conexión con bbdd
 
 const pool = new Pool({
     user: "postgres",
@@ -9,6 +10,9 @@ const pool = new Pool({
     database: "skatepark",
 });
 
+// Funciones que interactuan con bbdd
+
+// Create
 const nuevoSkater = async(email, nombre, password, anos_experiencia,especialidad,foto, estado) =>{
     const result = await pool.query(
 
@@ -20,6 +24,7 @@ const nuevoSkater = async(email, nombre, password, anos_experiencia,especialidad
     return usuario 
 }
 
+// Read
 const consultaSkater = async () => {
 
     try {
@@ -32,6 +37,7 @@ const consultaSkater = async () => {
     }
 };
 
+// Update
 const setSkaterStatus = async (id,auth) => {
 
     try {
@@ -42,14 +48,14 @@ const setSkaterStatus = async (id,auth) => {
         console.log(error.code);
         return error;
     }
-};
+}; 
 
+// Read One 
 const getSkater = async (email,password) => {
 
     try {
         const result = await pool.query(
             `SELECT * FROM skaters WHERE email = '${email}' AND password = '${password}'`);    
-        //console.log(result.rows[0])
         return result.rows[0];
     }
     catch (error) {
@@ -58,6 +64,7 @@ const getSkater = async (email,password) => {
     }
 };
 
+// Delete by name
 const deleteSkater = async (nombre) => {
     
     try {
@@ -70,7 +77,6 @@ const deleteSkater = async (nombre) => {
     return error;
     }
 }
-//console.log(getSkater("ignacio.silva.g@usach.cl", "123"));
 
 module.exports = {nuevoSkater, consultaSkater, setSkaterStatus, getSkater, deleteSkater}
 

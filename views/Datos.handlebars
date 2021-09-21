@@ -1,5 +1,4 @@
-
-  
+{{!-- Dependiendo del usuario que ingrese se muestra distinta info --}} 
   <body>
     <h1>Skate Park</h1>
 
@@ -52,7 +51,7 @@
           <button class="btn btn-primary">Actualizar</button>
         </div>
         <div>
-          <button class="btn btn-danger" onclick="eliminarUsuario({{usuario.nombre}})">Eliminar cuenta</button>
+          <button class="btn btn-danger" onclick="">Eliminar cuenta</button>
         </div>
       </form>
     </div>
@@ -60,12 +59,14 @@
 
 
   <script>
-
+/*
   const eliminarUsuario = async (nombre) => {
     const response = await fetch(`http://localhost:3000/skaters?nombre=${nombre}`, {
       method: "DELETE",
     });
   };
+  eliminarUsuario({{usuario.nombre}})
+  /*
 
   </script>
 
