@@ -194,10 +194,16 @@ app.get("/datos", async(req, res) => {
 
 
 // Sé que lo que falta no es difícil y que preguntando lo hubiera logrado
-// pero por como se dieron las cosas terminé haciendo esto muy tarde y en horas donde no podía preguntar 
+// pero por como se dieron las cosas terminé haciendo esto muy tarde y en horas donde no podía preguntar .
+
+// Lo que más me costó fue lo de las fotos, porque usando los métodos del profe y los del video guía
+// me entregaba distintos problemas.
+
+// La parte de editar y eliminar, sé la lógica de cómo se hace, pero hay algo que me falta 
+// que no pude decifrar, quizá por el cansancio.
 
 // De todas formas, tengo como meta personal terminar este ejercicio porque no estoy conforme 
-// fuera de que todo el resto funciona bien
+// fuera de que todo el resto funciona bien.
 
 // Pido comprensión, espero lograr el porcentaje suficiente.
 
