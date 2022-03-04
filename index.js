@@ -20,15 +20,19 @@ const { nuevoSkater, consultaSkater, setSkaterStatus, getSkater} = require("./co
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(
+
+app.
+use(
     expressFileUpload({
         limits: 5000000,
         abortOnLimit: true,
         responseOnLimit: "El tamaño de la imagen supera el limite",
     })
 );
+
 app.use(express.static(__dirname + "/public"))
 app.use("/css", express.static(__dirname + "./node_modules/bootstrap/dist/css"));
+
 app.engine(
     "handlebars",
     exphbs({
@@ -36,13 +40,15 @@ app.engine(
         layoutDir: `${__dirname}/views/mainLayout`,
     })
 );
+
 app.set("view engine", "handlebars");
 
 
 
 app.listen(3000, () => {
-    console.log("El servidor está inicializado en el puerto 3000");
+    console.log("3000");
 });
+
 
 // Ruta que muestra los participantes
 app.get("/", async(req, res) => {
@@ -67,11 +73,16 @@ app.get("/registro", (req, res) => {
 // Creación de usuario (solo falta la foto)
 app.post("/usuarios",async(req,res) => {
 
+    const { foto } = req.files;
     const {email, nombre, password, anos_experiencia,especialidad} = req.body
     const estado = false
-    //,foto
+    const fotoname = "foto" + nombre + ".png"
+
     try{
-        const usuario = await nuevoSkater(email, nombre, password, anos_experiencia, especialidad,"foto",estado);
+        foto.mv(`${__dirname}/archivos/${fotoname}`, (err) => {
+            res.send("Archivo cargado con éxito");
+        });
+        const usuario = await nuevoSkater(email, nombre, password, anos_experiencia, especialidad,fotoname,estado);
         res.status(201).send(JSON.stringify(usuario));
     }
     catch (e) {
@@ -97,7 +108,6 @@ app.get("/usuarios", async (req, res) => {
      })
  }
 })
-
 
 // Ruta que reemplaza el E° de check
 app.put("/usuarios",async(req,res) => {
@@ -191,21 +201,6 @@ app.get("/datos", async(req, res) => {
         })
     }
 });
-
-
-// Sé que lo que falta no es difícil y que preguntando lo hubiera logrado
-// pero por como se dieron las cosas terminé haciendo esto muy tarde y en horas donde no podía preguntar .
-
-// Lo que más me costó fue lo de las fotos, porque usando los métodos del profe y los del video guía
-// me entregaba distintos problemas.
-
-// La parte de editar y eliminar, sé la lógica de cómo se hace, pero hay algo que me falta 
-// que no pude decifrar, quizá por el cansancio.
-
-// De todas formas, tengo como meta personal terminar este ejercicio porque no estoy conforme 
-// fuera de que todo el resto funciona bien.
-
-// Pido comprensión, espero lograr el porcentaje suficiente.
 
 
 

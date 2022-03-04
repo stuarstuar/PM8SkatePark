@@ -29,6 +29,7 @@ const consultaSkater = async () => {
 
     try {
         const result = await pool.query("SELECT * FROM skaters");
+        //console.log(result.rows)
         return result.rows;
     } catch (error) {
 
@@ -36,6 +37,7 @@ const consultaSkater = async () => {
         return error;
     }
 };
+
 
 // Update
 const setSkaterStatus = async (id,auth) => {
